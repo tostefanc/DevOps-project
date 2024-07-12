@@ -1,1 +1,1 @@
-### DevOpe Project
+### DevOps Project
