@@ -12,7 +12,6 @@ def create_user(user_id, user_name):
         f"INSERT INTO users (id, name, creation_date) VALUES ('{user_id}', '{user_name}', '{creation_date}')")
     cursor.close()
     db_connection.close()
-    return
 
 
 def get_user_data(user_id):
@@ -34,7 +33,6 @@ def modify_user_data(user_id, user_name):
     cursor.execute(f"UPDATE users SET name='{user_name}' where id='{user_id}'")
     cursor.close()
     db_connection.close()
-    pass
 
 
 def remove_user(user_id):
