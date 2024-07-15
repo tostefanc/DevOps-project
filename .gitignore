@@ -1,2 +1,4 @@
 .venv
 .idea
+db_secrets.py
+__pycache__/
