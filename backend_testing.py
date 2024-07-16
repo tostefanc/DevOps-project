@@ -8,6 +8,9 @@ get_user_data = requests.get(f'http://127.0.0.1:5600/users/{user_id}')
 
 
 def check_user_in_db():
+    """
+     Verifies in the DB directly if the user has been created
+    """
     db_connection = pymysql.connect(host=DB_HOST, port=DB_PORT, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEMA)
     cursor = db_connection.cursor()
     cursor.execute(f"SELECT * FROM users WHERE ID='{user_id}'")
@@ -17,6 +20,11 @@ def check_user_in_db():
 
 
 def check_web_app():
+    """
+    Checks web app module
+    Tests if http response code is 200 and the received name is correct
+    Prints "Web app working" if above checks are true
+    """
     if get_user_data.status_code == 200 and get_user_data.json()['user_name'] == 'Agatha':
         print('Web app working!')
 
