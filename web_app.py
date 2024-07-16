@@ -18,4 +18,5 @@ def get_user_name(user_id):
     return f"<h1 id='user'> {user[0][1]} </h1>"
 
 
-app.run(host='127.0.0.1', port=5001)
+if __name__ == "__main__":
+    app.run(host='127.0.0.1', port=5001)
