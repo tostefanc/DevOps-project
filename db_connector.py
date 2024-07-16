@@ -4,6 +4,12 @@ import time
 
 
 def create_user(user_id, user_name):
+    """
+    Inserts in the database a user id and username
+    :param user_id:
+    :param user_name:
+    :return:
+    """
     db_connection = pymysql.connect(host=DB_HOST, port=DB_PORT, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEMA)
     db_connection.autocommit(True)
     creation_date = time.strftime('%Y-%m-%d %H:%M:%S')
@@ -15,6 +21,11 @@ def create_user(user_id, user_name):
 
 
 def get_user_data(user_id):
+    """
+    Gets the username and the id of the user by searching in the DB for the user_id
+    :param user_id:
+    :return user_data:
+    """
     db_connection = pymysql.connect(host=DB_HOST, port=DB_PORT, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEMA)
     db_connection.autocommit(True)
     cursor = db_connection.cursor()
@@ -27,6 +38,12 @@ def get_user_data(user_id):
 
 
 def modify_user_data(user_id, user_name):
+    """
+    Modifies the name of the user using the ID
+    :param user_id:
+    :param user_name:
+    :return:
+    """
     db_connection = pymysql.connect(host=DB_HOST, port=DB_PORT, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEMA)
     db_connection.autocommit(True)
     cursor = db_connection.cursor()
@@ -36,6 +53,11 @@ def modify_user_data(user_id, user_name):
 
 
 def remove_user(user_id):
+    """
+    Removes the user that with the user_id ID
+    :param user_id:
+    :return:
+    """
     db_connection = pymysql.connect(host=DB_HOST, port=DB_PORT, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEMA)
     db_connection.autocommit(True)
     cursor = db_connection.cursor()
@@ -45,6 +67,11 @@ def remove_user(user_id):
 
 
 def table_initialization(table_name):
+    """
+    Creates the table in the schema
+    :param table_name:
+    :return:
+    """
     db_connection = pymysql.connect(host=DB_HOST, port=DB_PORT, user=DB_USER, password=DB_PASSWORD, db=DB_SCHEMA)
     db_connection.autocommit(True)
     cursor = db_connection.cursor()
