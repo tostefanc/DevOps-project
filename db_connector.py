@@ -6,6 +6,7 @@ import time
 def create_user(user_id, user_name):
     """
     Inserts in the database a user id and username
+    Uses prepared insert query
     :param user_id:
     :param user_name:
     :return:
@@ -14,8 +15,9 @@ def create_user(user_id, user_name):
     db_connection.autocommit(True)
     creation_date = time.strftime('%Y-%m-%d %H:%M:%S')
     cursor = db_connection.cursor()
-    cursor.execute(
-        f"INSERT INTO users (id, name, creation_date) VALUES ('{user_id}', '{user_name}', '{creation_date}')")
+    parametrized_insert_query = """ INSERT INTO users (id, name, creation_date) VALUES (%s,%s,%s) """
+    parameters_to_insert = (user_id, user_name, creation_date)
+    cursor.execute(parametrized_insert_query, parameters_to_insert)
     cursor.close()
     db_connection.close()
 
