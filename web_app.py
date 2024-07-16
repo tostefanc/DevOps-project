@@ -6,6 +6,12 @@ app = Flask(__name__)
 
 @app.route('/users/get_user_data/<user_id>')
 def get_user_name(user_id):
+    """
+    Displays the username by using the ID
+    If the ID does not exist it displays an error
+    :param user_id:
+    :return HTML h1 tag containing user name or error:
+    """
     user = get_user_data(user_id)
     if len(user) == 0:
         return f"<h1 id='error'> no such user {user_id} </h1>"
