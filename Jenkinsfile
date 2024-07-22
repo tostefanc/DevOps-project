@@ -12,8 +12,7 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                git branch: 'second-part', url: 'https://github.com/tostefanc/DevOps-project.git'
-            }
+                git branch: 'second-part', url: 'https://github.com/tostefanc/DevOps-project.git', credentialsId: 'a27a360c-fa85-4b12-9056-4cac5f8bd076'            }
         }
         stage('build'){
             steps {
