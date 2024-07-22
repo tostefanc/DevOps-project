@@ -10,7 +10,7 @@ pipeline {
         stage('checkout'){
             steps{
                 git branch: 'main', url: 'https://github.com/tostefanc/DevOps-project.git'
-                echo "build stage"
+
             }
         }
         stage('test'){
