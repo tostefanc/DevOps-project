@@ -1,7 +1,7 @@
 pipeline {
     agent any
     options {
-        buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
+        buildDiscarder(logRotator(numToKeepStr: '21', daysToKeepStr: '5'))
     }
     stages {
         stage('build'){
