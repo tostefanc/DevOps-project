@@ -1,3 +1,5 @@
+import os
+import signal
 from flask import Flask
 from db_connector import get_user_data
 
@@ -16,6 +18,12 @@ def get_user_name(user_id):
     if len(user) == 0:
         return f"<h1 id='error'> no such user {user_id} </h1>"
     return f"<h1 id='user'> {user[0][1]} </h1>"
+
+
+@app.route('/stop_server')
+def stop_server():
+    os.kill(os.getpid(), signal.CTRL_C_EVENT)
+    return 'Server stopped'
 
 
 if __name__ == "__main__":

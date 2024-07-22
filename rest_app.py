@@ -1,3 +1,5 @@
+import os
+import signal
 import pymysql
 from flask import Flask, request, jsonify
 import db_connector
@@ -94,6 +96,12 @@ def delete_user(user_id):
             "status": "error",
             "reason": "no such id"
         }), 500
+
+
+@app.route('/stop_server')
+def stop_server():
+    os.kill(os.getpid(), signal.CTRL_C_EVENT)
+    return 'Server stopped'
 
 
 if __name__ == "__main__":
