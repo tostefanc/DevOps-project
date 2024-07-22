@@ -4,7 +4,7 @@ pipeline {
         pollSCM('* * * * *')
     }
     tools {
-        git '/usr/bin/git'
+        git 'Default'
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '21', daysToKeepStr: '5'))
