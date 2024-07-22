@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        pollSCM('H/1 * * * *')
+        pollSCM('* * * * *')
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '21', daysToKeepStr: '5'))
@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('checkout'){
             steps{
-                git branch: 'second-part', url: 'https://github.com/tostefanc/DevOps-project.git'
+                git branch: 'main', url: 'https://github.com/tostefanc/DevOps-project.git'
                 echo "build stage"
             }
         }
