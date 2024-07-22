@@ -9,13 +9,23 @@ pipeline {
     stages {
         stage('checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/tostefanc/DevOps-project.git'
-
+                git branch: 'second-part', url: 'https://github.com/tostefanc/DevOps-project.git'
             }
         }
-        stage('test'){
+        stage('run backend servers'){
             steps{
-                echo "test stage"
+                sh 'nohup python web_app.py &'
+                sh 'nohup python rest_app.py &'
+            }
+        stage('testing'){
+            steps{
+                sh 'python backend_testing.py'
+                sh 'python frontend_testing.py'
+                sh 'python combined_testing.py'
+            }
+        stage('clean environment'){
+            steps{
+                sh 'python clean_environment.py'
             }
         }
     }
