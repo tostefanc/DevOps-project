@@ -100,7 +100,10 @@ def delete_user(user_id):
 
 @app.route('/stop_server')
 def stop_server():
-    os.kill(os.getpid(), signal.CTRL_C_EVENT)
+    if os.name == 'posix':
+        os.kill(os.getpid(), signal.SIGINT)
+    if os.name == 'nt':
+        os.kill(os.getpid(), signal.CTRL_C_EVENT)
     return 'Server stopped'
 
 
