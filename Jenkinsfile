@@ -11,4 +11,9 @@ pipeline {
             echo "test stage"
         }
     }
+    post {
+        failure {
+            echo "something failed"
+        }
+    }
 }
