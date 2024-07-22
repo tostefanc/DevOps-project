@@ -14,25 +14,25 @@ pipeline {
         }
         stage('build'){
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'pip3 install -r requirements.txt'
             }
         }
         stage('run backend servers') {
             steps {
-                sh 'nohup python web_app.py &'
-                sh 'nohup python rest_app.py &'
+                sh 'nohup python3 web_app.py &'
+                sh 'nohup python3 rest_app.py &'
             }
         }
         stage('testing') {
             steps {
-                sh 'python backend_testing.py'
-                sh 'python frontend_testing.py'
-                sh 'python combined_testing.py'
+                sh 'python3 backend_testing.py'
+                sh 'python3 frontend_testing.py'
+                sh 'python3 combined_testing.py'
             }
         }
         stage('clean environment') {
             steps {
-                sh 'python clean_environment.py'
+                sh 'python3 clean_environment.py'
             }
         }
     }
