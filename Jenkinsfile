@@ -12,6 +12,11 @@ pipeline {
                 git branch: 'second-part', url: 'https://github.com/tostefanc/DevOps-project.git'
             }
         }
+        stage('build'){
+            steps {
+                sh 'pip install -r requirements.txt'
+            }
+        }
         stage('run backend servers') {
             steps {
                 sh 'nohup python web_app.py &'
