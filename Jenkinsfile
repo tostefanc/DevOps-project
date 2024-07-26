@@ -38,4 +38,10 @@ pipeline {
             }
         }
     }
+    post {
+        failure {
+             echo 'This will run only if Pipeline Failed'
+             mail bcc: '', body: "<b>DevOps Project JOB:</b>: ${env.JOB_NAME} <br>Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}", charset: 'UTF-8', from: '', mimeType: 'text/html', replyTo: '', subject: "ERROR CI: Project name -> ${env.JOB_NAME}", to: credentialsId: '11bd0291-558c-4934-99bc-04475cb282b2';
+         }
+    }
 }
