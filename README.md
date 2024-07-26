@@ -1,5 +1,5 @@
 ### DevOps Project
-Example of db_connector.py 
+Example of db_secrets.py 
 ```python
 DB_USER = 'user'
 DB_PASSWORD = 'password'
