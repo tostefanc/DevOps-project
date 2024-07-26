@@ -29,5 +29,10 @@ def stop_server():
     return 'Server stopped'
 
 
+@app.errorhandler(404)
+def route_not_found(e):
+    return f"<h2 style=\"color:blue;\">Path not found </h2>"
+
+
 if __name__ == "__main__":
     app.run(host='127.0.0.1', port=5001)
