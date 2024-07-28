@@ -21,7 +21,7 @@ pipeline {
         stage('build'){
             steps {
                 sh 'pip3 install -r requirements.txt'
-                sh '[ -f db_secrets.py ] && cp $DB_SECRETS_FILE db_secrets.py'
+                sh '[ ! -f db_secrets.py ] && cp $DB_SECRETS_FILE db_secrets.py'
             }
         }
         stage('run backend servers') {
