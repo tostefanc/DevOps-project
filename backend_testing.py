@@ -2,7 +2,7 @@ import requests
 import pymysql
 from db_secrets import DB_HOST, DB_PORT, DB_USER, DB_SCHEMA, DB_PASSWORD
 
-user_id = 999
+user_id = 0
 requests.post(f'http://127.0.0.1:5600/users/{user_id}', json={'user_name': 'Agatha'})
 get_user_data = requests.get(f'http://127.0.0.1:5600/users/{user_id}')
 
@@ -46,5 +46,5 @@ def check_web_app():
 
 
 check_user_in_db()
-remove_test_user()
+# remove_test_user()
 check_web_app()
