@@ -16,7 +16,7 @@ def get_user_name(user_id):
     """
     user = get_user_data(user_id)
     if len(user) == 0:
-        return f"<h1 id='error'> no such user {user_id} </h1>"
+        return f"<h1 id='error'> no such user {user_id} </h1>", 404
     return f"<h1 id='user'> {user[0][1]} </h1>"
 
 
