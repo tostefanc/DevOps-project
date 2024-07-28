@@ -1,3 +1,5 @@
+import os
+import signal
 from flask import Flask
 from db_connector import get_user_data
 
@@ -14,8 +16,22 @@ def get_user_name(user_id):
     """
     user = get_user_data(user_id)
     if len(user) == 0:
-        return f"<h1 id='error'> no such user {user_id} </h1>"
+        return f"<h1 id='error'> no such user {user_id} </h1>", 404
     return f"<h1 id='user'> {user[0][1]} </h1>"
+
+
+@app.route('/stop_server')
+def stop_server():
+    if os.name == 'posix':
+        os.kill(os.getpid(), signal.SIGINT)
+    if os.name == 'nt':
+        os.kill(os.getpid(), signal.CTRL_C_EVENT)
+    return 'Server stopped'
+
+
+@app.errorhandler(404)
+def route_not_found(e):
+    return f"<h2 style=\"color:blue;\">Path not found </h2>"
 
 
 if __name__ == "__main__":
