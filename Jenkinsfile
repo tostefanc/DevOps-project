@@ -5,7 +5,7 @@ pipeline {
         DB_SECRETS_FILE = credentials('db-secrets.py')
     }
     triggers {
-        pollSCM('* * * * *')
+        pollSCM('H/10 * * * *')
     }
     tools {
         git 'Default'
