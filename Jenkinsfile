@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         EMAIL_ADDRESS = credentials('notification-email-address')
+        DB_SECRETS_FILE = credentials('db-secrets.py')
     }
     triggers {
         pollSCM('* * * * *')
@@ -20,6 +21,7 @@ pipeline {
         stage('build'){
             steps {
                 sh 'pip3 install -r requirements.txt'
+                sh 'cp $DB_SECRETS_FILE db_secrets.py'
             }
         }
         stage('run backend servers') {
