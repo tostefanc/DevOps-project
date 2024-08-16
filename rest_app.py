@@ -1,3 +1,5 @@
+import os
+import signal
 import pymysql
 from flask import Flask, request, jsonify
 import db_connector
@@ -94,6 +96,23 @@ def delete_user(user_id):
             "status": "error",
             "reason": "no such id"
         }), 500
+
+
+@app.route('/stop_server')
+def stop_server():
+    if os.name == 'posix':
+        os.kill(os.getpid(), signal.SIGINT)
+    if os.name == 'nt':
+        os.kill(os.getpid(), signal.CTRL_C_EVENT)
+    return 'Server stopped'
+
+
+@app.errorhandler(404)
+def route_not_found(e):
+    return jsonify({
+        "status": "error",
+        "reason": "Path not found"
+    }), 404
 
 
 if __name__ == "__main__":
